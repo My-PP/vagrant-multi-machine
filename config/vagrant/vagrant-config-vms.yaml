@@ -60,7 +60,7 @@ VMs:
   -
     # сервер разработки приложений
     #   обязательные перменные:
-    setup: false
+    setup: true
     name: "web"
     box: "ubuntu/focal64"
     box_version: "20220724.0.0"
@@ -74,14 +74,18 @@ VMs:
     document_root: "www/vm-web/"
     apache_document_root: "/var/www"
     #   дополнительные переменные:
-    vhosts_dir: "config/vhosts/"
-    hosts:
+    # vhosts_dir: "config/vhosts/"
+    VirtualHost:
       -
-        host: "wordpress.local"
-        email: "admin@wordpress.local"
+        ServerAdmin: "webmaster@localhost"
+        ServerName: "drupal.local"
+        ServerAlias: "www.drupal.local"
+        DocumentRoot: "/var/www/drupal.local"
       -
-        host: "drupal.local"
-        email: "admin@drupal.local"
+        ServerAdmin: "webmaster@localhost"
+        ServerName: "wordpress.local"
+        ServerAlias: "www.wordpress.local"
+        DocumentRoot: "/var/www/wordpress.local"
   -
     # MySQL сервер баз данных
     #   обязательные перменные:

@@ -91,6 +91,18 @@ Vagrant.configure("#{configglobal["GLOBAL"]["api_version"]}") do |config|
               }
           end
         end
+        if configvms["name"] == "web"
+          configvms["VirtualHost"].each do |virtualhost|
+            vm.vm.provision "shell", path: "#{current_dir}/config/vagrant/provision/provision-web-virtualhost-create.sh",
+              env: {
+                "ServerAdmin"   => "#{virtualhost["ServerAdmin"]}",
+                "ServerName"    => "#{virtualhost["ServerName"]}",
+                "ServerAlias"   => "#{virtualhost["ServerAlias"]}",
+                "DocumentRoot"  => "#{virtualhost["DocumentRoot"]}",
+              }
+          end
+          vm.vm.provision "shell", path: "#{current_dir}/config/vagrant/provision/provision-web-virtualhost-register.sh"
+        end
         if File.file?("#{current_dir}/config/vagrant/provision/vagrant-up-#{configvms["name"]}.sh")
           vm.vm.provision "shell", path: "#{current_dir}/config/vagrant/provision/vagrant-up-#{configvms["name"]}.sh",
             env: {
@@ -132,7 +144,7 @@ Vagrant.configure("#{configglobal["GLOBAL"]["api_version"]}") do |config|
           # ПРОБРОС ПОРТОВ:
           #   ...
           # СИНХРОНИЗАЦИЯ ФАЙЛОВ ПРОЕКТА:
-          vm.vm.synced_folder configvms["vhosts_dir"] , "/var/tmp/devops-vhosts", create: true
+          # vm.vm.synced_folder configvms["vhosts_dir"] , "/var/tmp/devops-vhosts", create: true
           # ДОПОЛНИТЕЛЬНАЯ КОНФИГУРАЦИЯ ВИРТУАЛЬНОЙ МАШИНЫ С ПОМОЩЬЮ SHELL
           # при первой загрузке
           #   ...
