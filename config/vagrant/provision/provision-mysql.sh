@@ -28,10 +28,7 @@ apt-get -y install php$PHPVERSION-zip > /dev/null
 apt-get -y install php$PHPVERSION-mbstring > /dev/null
 apt-get -y install php$PHPVERSION-curl > /dev/null
 
-apt-get -y install debconf-utils > /dev/null
-apt-get -y install curl > /dev/null
-apt-get -y install build-essential > /dev/null
-apt-get -y install software-properties-common > /dev/null
+
 
 echo -e "\e[34m Устанавливаем MySQL root user password \e[0m"
 debconf-set-selections <<< "mysql-server mysql-server/root_password password $DBPASSWD"
@@ -43,7 +40,7 @@ debconf-set-selections <<< "phpmyadmin phpmyadmin/mysql/app-pass password $DBPAS
 debconf-set-selections <<< "phpmyadmin phpmyadmin/reconfigure-webserver multiselect none"
 
 echo -e "\e[34m Устанавливаем MySQL server \e[0m"
-apt-get -y install mysql-server > /dev/null
+apt-get -y install mysql-server mysql-client > /dev/null
 
 # Устраняем необходимость вводить логин и пароль.
 # Сохраним пароль в ~/.my.cnf После этого mysql и mysqladmin просить пароль перестанут.

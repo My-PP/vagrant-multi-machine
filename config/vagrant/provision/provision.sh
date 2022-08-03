@@ -19,5 +19,10 @@ apt-get -y install mc > /dev/null
 echo -e "\e[34m Wget \e[0m"
 apt-get -y install wget > /dev/null
 
+apt-get -y install debconf-utils > /dev/null
+apt-get -y install curl > /dev/null
+apt-get -y install build-essential > /dev/null
+apt-get -y install software-properties-common > /dev/null
+
 
 

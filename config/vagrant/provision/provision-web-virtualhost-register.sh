@@ -19,10 +19,6 @@ do
     sudo sed -i "2i${vmip}    ${vhost}" /etc/hosts
 done
 
-sed -i "s/AllowOverride None/AllowOverride All/g" /etc/apache2/apache2.conf
-sed -i "s/error_reporting = .*/error_reporting = E_ALL/" /etc/php/$PHPVERSION/apache2/php.ini
-sed -i "s/display_errors = .*/display_errors = On/" /etc/php/$PHPVERSION/apache2/php.ini
-
 mkdir -p /var/www/wordpress.local
 mkdir -p /var/www/drupal.local
 
