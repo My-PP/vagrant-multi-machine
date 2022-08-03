@@ -11,7 +11,7 @@ echo -e "\e[34m Применяем общую конфигурацию для в
 apt-get update > /dev/null
 apt-get -y upgrade > /dev/null
 
-echo -e "\e[34m Устанавливаем базовые пакеты \e[0m"
+echo -e "\e[34m Устанавливаем базовые пакеты: \e[0m"
 
 echo -e "\e[34m Midnight Commander (mc) \e[0m"
 apt-get -y install mc > /dev/null

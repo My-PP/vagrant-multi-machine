@@ -1,8 +1,9 @@
 # редакторы
-.idea
+.idea/
 *.sublime-project
 *.sublime-worspace
 *.code-workspace
+.vscode/
 
 # каталоги для выходных данных сборки
 bin/
