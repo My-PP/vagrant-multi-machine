@@ -1,0 +1,141 @@
+---
+
+# ОБЯЗАТЕЛЬНЫЕ ПЕРЕМЕННЫЕ ДЛЯ КАЖДОЙ ИЗ ВИРТУЛЬНЫХ МАШИН:
+#   setup                 - доступные переменные: true, false
+#   name                  - name (имя виртуальной машины)
+#   box                   - образ системы
+#   box_version           -
+#   box_check_update      - проверка репозитория на наличие обновлений
+#   username: devops      - имя пользователя
+#   password: devops      - пароль пользователя
+#   keys_only: false      - можно подключаться по паролю
+#   insert_key: false     - отменить создание ssh-ключа
+#   port_guest            -
+#   port_host             -
+#   document_root         -
+#   apache_document_root  - 
+# ДОПОЛНИТЕЛЬНЫЕ ПЕРЕМЕННЫЕ:
+#   memory                - объем оперативной памяти, по умолчанию, если не указано, выделяется 1024Mb
+#   cpu                   - количество ядер процессора, по умолчанию, если не указано, выделяется одно
+#
+#   mysql_dbname          - основная база данных сервера разработки приложений
+
+VMs:
+  -
+    # система контроля версий Gitlab Community Edition
+    #   обязательные перменные:
+    setup: false
+    name: "git"
+    box: "ubuntu/focal64"
+    box_version: "20220724.0.0"
+    box_check_update: false
+    username: Administrator
+    password: p@ssw0rd
+    keys_only: false
+    insert_key: false
+    port_guest: 80
+    port_host: 8090
+    document_root: "www/vm-git/"
+    apache_document_root: "/var/www/html"
+    #   дополнительные переменные:
+    #   ...
+  -
+    # сервер непрерывной интеграции (билд-сервер)
+    #   обязательные перменные:
+    setup: false
+    name: "build"
+    box: "ubuntu/focal64"
+    box_version: "20220724.0.0"
+    box_check_update: false
+    username: Administrator
+    password: p@ssw0rd
+    keys_only: false
+    insert_key: false
+    port_guest: 80
+    port_host: 8091
+    document_root: "www/vm-build/"
+    apache_document_root: "/var/www/html"
+    #   дополнительные переменные:
+    #   ...
+  -
+    # сервер разработки приложений
+    #   обязательные перменные:
+    setup: false
+    name: "web"
+    box: "ubuntu/focal64"
+    box_version: "20220724.0.0"
+    box_check_update: false
+    username: Administrator
+    password: p@ssw0rd
+    keys_only: false
+    insert_key: false
+    port_guest: 80
+    port_host: 8092
+    document_root: "www/vm-web/"
+    apache_document_root: "/var/www"
+    #   дополнительные переменные:
+    vhosts_dir: "config/vhosts/"
+    hosts:
+      -
+        host: "wordpress.local"
+        email: "admin@wordpress.local"
+      -
+        host: "drupal.local"
+        email: "admin@drupal.local"
+  -
+    # MySQL сервер баз данных
+    #   обязательные перменные:
+    setup: true  
+    name: "mysql"
+    box: "ubuntu/focal64"
+    box_version: "20220724.0.0"
+    box_check_update: false
+    username: Administrator
+    password: p@ssw0rd
+    keys_only: false
+    insert_key: false
+    port_guest: 80
+    port_host: 8093
+    document_root: "www/vm-mysql/"
+    apache_document_root: "/var/www/html"
+    #   дополнительные переменные:
+    mysql_guest: 3306
+    mysql_host: 3306
+    mysql_dbhost: localhost
+    mysql_dbname: che 
+    mysql_dbuser: root
+    mysql_dbpasswd: password
+    mysql_data_dir: "data/mysql/"
+    mysql_database:
+      -
+        dbname: drupal
+        dbuser: drupal
+        dbpwd: drupal
+      - 
+        dbname: wordpress
+        dbuser: wordpress
+        dbpwd: wordpress
+      - 
+        dbname: devops
+        dbuser: devops
+        dbpwd: devops
+    memory: 2048
+  -
+    # PostgreSQL сервер баз данных
+    #   обязательные перменные:
+    setup: false  
+    name: "postgresql"
+    box: "ubuntu/focal64"
+    box_version: "20220724.0.0"
+    box_check_update: false
+    username: Administrator
+    password: p@ssw0rd
+    keys_only: false
+    insert_key: false
+    port_guest: 80
+    port_host: 8094
+    document_root: "www/vm-postgresql/"
+    apache_document_root: "/var/www/html"
+    #   дополнительные переменные:
+    memory: 2048
+...
