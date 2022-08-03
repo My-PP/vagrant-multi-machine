@@ -28,9 +28,14 @@ apt-get -y install php$PHPVERSION-zip > /dev/null
 apt-get -y install php$PHPVERSION-mbstring > /dev/null
 apt-get -y install php$PHPVERSION-curl > /dev/null
 
-sed -i "s/AllowOverride None/AllowOverride All/g" /etc/apache2/apache2.conf
+sed -i 's/max_execution_time = .*/max_execution_time = 60/' /etc/php/$PHPVERSION/apache2/php.ini
+sed -i 's/post_max_size = .*/post_max_size = 64M/' /etc/php/$PHPVERSION/apache2/php.ini
+sed -i 's/upload_max_filesize = .*/upload_max_filesize = 1G/' /etc/php/$PHPVERSION/apache2/php.ini
+sed -i 's/memory_limit = .*/memory_limit = 512M/' /etc/php/$PHPVERSION/apache2/php.ini
 sed -i "s/error_reporting = .*/error_reporting = E_ALL/" /etc/php/$PHPVERSION/apache2/php.ini
 sed -i "s/display_errors = .*/display_errors = On/" /etc/php/$PHPVERSION/apache2/php.ini
+
+sed -i "s/AllowOverride None/AllowOverride All/g" /etc/apache2/apache2.conf
 
 sudo service apache2 restart
 

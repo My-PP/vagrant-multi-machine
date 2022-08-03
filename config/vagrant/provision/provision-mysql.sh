@@ -51,14 +51,14 @@ user="$DBPASSWD"
 password="$DBPASSWD"
 EOF
 
-sudo mysql -u root -e "GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' WITH GRANT OPTION"
-sudo mysql -u root -e "FLUSH PRIVILEGES;"
+sudo mysql -uroot -e "GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' WITH GRANT OPTION"
+sudo mysql -uroot -e "FLUSH PRIVILEGES;"
 sudo service mysqld restart
 
 echo -e "\e[34m Создаём базу данных сервера разработки приложений $DBNAME \e[0m"
-sudo mysql -u root -e "CREATE DATABASE IF NOT EXISTS $DBNAME"
-sudo mysql -u root -e "GRANT ALL PRIVILEGES ON $DBNAME.* to '$DBUSER'@'%'"
-sudo mysql -u root -e "FLUSH PRIVILEGES;"
+sudo mysql -uroot -e "CREATE DATABASE IF NOT EXISTS $DBNAME"
+sudo mysql -uroot -e "GRANT ALL PRIVILEGES ON $DBNAME.* to '$DBUSER'@'%'"
+sudo mysql -uroot -e "FLUSH PRIVILEGES;"
 
 echo -e "\e[34m Устанавливаем MySQL интерфейс phpMyAdmin \e[0m"
 apt-get -y install phpmyadmin > /dev/null
