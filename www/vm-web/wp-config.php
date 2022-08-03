@@ -1,6 +1,7 @@
 <?php 
 
 # надо будет потом взять данные с YAML-настроек
+define( 'DB_HOST', 'localhost' );
 define( 'DB_NAME', 'wordpress' );
 define( 'DB_USER', 'wordpress' );
 define( 'DB_PASSWORD', 'wordpress' );
