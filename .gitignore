@@ -1,0 +1,34 @@
+# редакторы
+.idea/
+*.sublime-project
+*.sublime-worspace
+*.code-workspace
+.vscode/
+
+# каталоги для выходных данных сборки
+bin/
+out/
+target/
+logs/
+project-temp/
+
+# каталоги Vagrant
+.vagrant/
+
+# файлы, сгенерированные во время выполнения
+*.log
+*.lock
+*.tmp
+*.old
+
+# Windows system files
+Thumbs.db
+
+# MySQL Workbench
+*.mwb
+
+# Diagram software
+*.drawio
+
+drupal.local/
+wordpress.local/
