@@ -7,7 +7,7 @@ export DEBIAN_FRONTEND=noninteractive
 #   Когда вы пытаетесь установить пакет с помощью команды apt-get install , он всегда запрашивает подтверждение, 
 #   флаг -y указывает «да», поэтому он не будет запрашивать подтверждение каждой установки.
 
-echo -e "\e[34m Регистрируем, добавляем запись в /etc/hosts\e[0m"
+echo -e "\e[34m Регистрируем, добавляем запись в /etc/hosts \e[0m"
 
 for vhFile in /etc/apache2/sites-available/*.conf
 do

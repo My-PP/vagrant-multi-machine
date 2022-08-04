@@ -22,7 +22,7 @@
 
 VMs:
   -
-    # система контроля версий Gitlab Community Edition
+    # СИСТЕМА КОНТРОЛЯ ВЕРСИЙ GITLAB COMMUNITY EDITION
     #   обязательные перменные:
     setup: false
     name: "git"
@@ -40,7 +40,7 @@ VMs:
     #   дополнительные переменные:
     #   ...
   -
-    # сервер непрерывной интеграции (билд-сервер)
+    # СЕРВЕР НЕПРЕРЫВНОЙ ИНТЕГРАЦИИ (билд-сервер)
     #   обязательные перменные:
     setup: false
     name: "build"
@@ -58,7 +58,7 @@ VMs:
     #   дополнительные переменные:
     #   ...
   -
-    # сервер разработки приложений
+    # СЕРВЕР РАЗРАБОТКИ ПРИЛОЖЕНИЙ
     #   обязательные перменные:
     setup: true
     name: "web"
@@ -87,7 +87,7 @@ VMs:
         ServerAlias: "www.wordpress.local"
         DocumentRoot: "/var/www/wordpress.local"
   -
-    # MySQL сервер баз данных
+    # MySQL СЕРВЕР БАЗ ДАННЫХ
     #   обязательные перменные:
     setup: true  
     name: "mysql"
@@ -125,7 +125,7 @@ VMs:
         dbpwd: devops
     memory: 2048
   -
-    # PostgreSQL сервер баз данных
+    # PostgreSQL СЕРВЕР БАЗ ДАННЫХ
     #   обязательные перменные:
     setup: false  
     name: "postgresql"

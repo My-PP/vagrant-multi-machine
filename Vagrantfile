@@ -4,8 +4,8 @@ current_dir = File.join(File.dirname(__FILE__))
 # подключаем и читаем YAML-файл с настройками
 require 'yaml'
 if File.file?("#{current_dir}/config/vagrant/vagrant-config-vms.yaml") && File.file?("#{current_dir}/config/vagrant/vagrant-config-global.yaml")
-  configvms = YAML.load_file("#{current_dir}/config/vagrant/vagrant-config-vms.yaml")
-  configglobal = YAML.load_file("#{current_dir}/config/vagrant/vagrant-config-global.yaml")
+  configvms     = YAML.load_file("#{current_dir}/config/vagrant/vagrant-config-vms.yaml")
+  configglobal  = YAML.load_file("#{current_dir}/config/vagrant/vagrant-config-global.yaml")
 else
   raise "Конфигурационный файл отсутствует"
 end
@@ -26,6 +26,13 @@ Vagrant.configure("#{configglobal["GLOBAL"]["api_version"]}") do |config|
           vm.vm.box_version = configvms["box_version"]
         end
 
+        # ТРИГГЕРЫ:
+        vm.trigger.after :up do |trigger|
+          trigger.name = "\e[34m vagrant up after #{configvms["name"]} VM\e[0m"
+          trigger.info = "\e[34m Очищаем систему после инициализации \e[0m"
+          trigger.run_remote  = {path: "#{current_dir}/config/vagrant/provision/vagrant-up-after.sh"}
+        end
+        
         # РАСШИРЕННАЯ КОНФИГУРАЦИЯ:
         memory = configvms["memory"]  ? configvms["memory"]  : 1024;
         cpu = configvms["cpu"]  ? configvms["cpu"]  : 1;
@@ -148,7 +155,7 @@ Vagrant.configure("#{configglobal["GLOBAL"]["api_version"]}") do |config|
           # СИНХРОНИЗАЦИЯ ФАЙЛОВ ПРОЕКТА:
           # vm.vm.synced_folder configvms["vhosts_dir"] , "/var/tmp/devops-vhosts", create: true
           # ДОПОЛНИТЕЛЬНАЯ КОНФИГУРАЦИЯ ВИРТУАЛЬНОЙ МАШИНЫ С ПОМОЩЬЮ SHELL
-          # при первой загрузке
+          #   при первой загрузке
           #   ...
           #   при каждой загрузке:
           #   ...  

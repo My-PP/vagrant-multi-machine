@@ -8,7 +8,7 @@ export DEBIAN_FRONTEND=noninteractive
 #   флаг -y указывает «да», поэтому он не будет запрашивать подтверждение каждой установки.
 
 echo -e "\e[34m Конфигурируем MySQL сервер баз данных \e[0m"
-echo -e "\e[34m Устанавливаем базовые пакеты \e[0m"
+echo -e "\e[34m Устанавливаем базовые пакеты: \e[0m"
 
 echo -e "\e[34m Устанавливаем Apache сервер \e[0m"
 apt-get -y install apache2 > /dev/null
@@ -27,8 +27,6 @@ apt-get -y install php$PHPVERSION-xml > /dev/null
 apt-get -y install php$PHPVERSION-zip > /dev/null
 apt-get -y install php$PHPVERSION-mbstring > /dev/null
 apt-get -y install php$PHPVERSION-curl > /dev/null
-
-
 
 echo -e "\e[34m Устанавливаем MySQL root user password \e[0m"
 debconf-set-selections <<< "mysql-server mysql-server/root_password password $DBPASSWD"

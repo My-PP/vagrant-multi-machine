@@ -8,15 +8,16 @@ export DEBIAN_FRONTEND=noninteractive
 #   флаг -y указывает «да», поэтому он не будет запрашивать подтверждение каждой установки.
 
 echo -e "\e[34m Конфигурируем сервер разработки приложений \e[0m"
-echo -e "\e[34m Устанавливаем базовые пакеты \e[0m"
 
-echo -e "\e[34m Устанавливаем Apache сервер \e[0m"
+echo -e "\e[34m Устанавливаем базовые пакеты: \e[0m"
+
+echo -e "\e[34m - Apache сервер \e[0m"
 apt-get -y install apache2 > /dev/null
 
-echo -e "\e[34m Устанавливаем PHP версии $PHPVERSION \e[0m"
+echo -e "\e[34m - PHP версии $PHPVERSION \e[0m"
 apt-get -y install php$PHPVERSION libapache2-mod-php$PHPVERSION > /dev/null
 
-echo -e "\e[34m Устанавливаем необходимые PHP расширения \e[0m"
+echo -e "\e[34m - необходимые PHP расширения \e[0m"
 apt-get -y install php$PHPVERSION-mysql > /dev/null
 apt-get -y install php$PHPVERSION-memcached > /dev/null
 apt-get -y install php$PHPVERSION-pgsql > /dev/null
