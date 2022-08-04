@@ -19,6 +19,9 @@ do
     sudo sed -i "2i${vmip}    ${vhost}" /etc/hosts
 done
 
+# Обновляем настройки без перезапуска службы 
+sudo systemctl reload apache2
+
 mkdir -p /var/www/wordpress.local
 mkdir -p /var/www/drupal.local
 
@@ -39,5 +42,6 @@ rm -Rf /var/www/drupal-*
 cp -Rf /var/www/drupal.settings.php /var/www/drupal.local/sites/default/
 php -r "echo 'return ' . bin2hex(openssl_random_pseudo_bytes(10)) . ';';" > /var/www/drupal.local/sites/default/hash_salt.php
       
+# Перезапускаем Apache (останавливаем, а затем запускаем службу)
 sudo service apache2 restart
 

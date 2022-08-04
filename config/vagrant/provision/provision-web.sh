@@ -37,6 +37,7 @@ sed -i "s/display_errors = .*/display_errors = On/" /etc/php/$PHPVERSION/apache2
 
 sed -i "s/AllowOverride None/AllowOverride All/g" /etc/apache2/apache2.conf
 
+# Перезапускаем Apache (останавливаем, а затем запускаем службу)
 sudo service apache2 restart
 
 echo -e "\e[34m Удаляем все существующие виртуальные хосты \e[0m"
@@ -62,7 +63,7 @@ echo "		SSLEngine on" >> /etc/apache2/sites-available/default-ssl.conf
 echo "		SSLCertificateFile	/etc/ssl/certs/ssl-cert-snakeoil.pem" >> /etc/apache2/sites-available/default-ssl.conf
 echo "		SSLCertificateKeyFile /etc/ssl/private/ssl-cert-snakeoil.key" >> /etc/apache2/sites-available/default-ssl.conf
 echo "		#SSLCertificateChainFile /etc/apache2/ssl.crt/server-ca.crt" >> /etc/apache2/sites-available/default-ssl.conf
-echo "		<FilesMatch "\.(cgi|shtml|phtml|php)$">" >> /etc/apache2/sites-available/default-ssl.conf
+echo "		<FilesMatch \"\.(cgi|shtml|phtml|php)$\">" >> /etc/apache2/sites-available/default-ssl.conf
 echo "				SSLOptions +StdEnvVars" >> /etc/apache2/sites-available/default-ssl.conf
 echo "		</FilesMatch>" >> /etc/apache2/sites-available/default-ssl.conf
 echo "		<Directory /usr/lib/cgi-bin>" >> /etc/apache2/sites-available/default-ssl.conf
@@ -70,3 +71,4 @@ echo "				SSLOptions +StdEnvVars" >> /etc/apache2/sites-available/default-ssl.co
 echo "		</Directory>" >> /etc/apache2/sites-available/default-ssl.conf
 echo "	</VirtualHost>" >> /etc/apache2/sites-available/default-ssl.conf
 echo "</IfModule>" >> /etc/apache2/sites-available/default-ssl.conf
+

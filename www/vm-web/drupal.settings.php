@@ -8,27 +8,19 @@ $databases['default']['default'] = [
     'database' => 'drupal',
     'username' => 'drupal',
     'password' => 'drupal',
-    'host' => 'localhost',
-    'prefix' => '',
+    'host' => '10.23.0.179',
+    'prefix' => 'dru_',
     'port' => '3306',
 ];
 
 $settings['hash_salt'] = include (__DIR__ . '/hash_salt.php');
-
 $settings['update_free_access'] = FALSE;
-
-
-
 $settings['container_yamls'][] = $app_root . '/' . $site_path . '/services.yml';
-
 $settings['file_scan_ignore_directories'] = [
   'node_modules',
   'bower_components',
 ];
-
 $settings['entity_update_batch_size'] = 50;
-
 $settings['entity_update_backup'] = TRUE;
-
 $settings['migrate_node_migrate_type_classic'] = FALSE;
 
