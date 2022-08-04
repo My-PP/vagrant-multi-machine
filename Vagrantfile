@@ -1,7 +1,7 @@
-# заворачиваем путь в переменную
+# ЗАВОРАЧИВАЕМ ПУТЬ В ПЕРЕМЕННУЮ:
 current_dir = File.join(File.dirname(__FILE__))
 
-# подключаем и читаем YAML-файл с настройками
+# ПОДКЛЮЧАЕМ И ЧИТАЕМ YAML-ФАЙЛ С НАСТРОЙКАМИ:
 require 'yaml'
 if File.file?("#{current_dir}/config/vagrant/vagrant-config-vms.yaml") && File.file?("#{current_dir}/config/vagrant/vagrant-config-global.yaml")
   configvms     = YAML.load_file("#{current_dir}/config/vagrant/vagrant-config-vms.yaml")
@@ -18,7 +18,7 @@ Vagrant.configure("#{configglobal["GLOBAL"]["api_version"]}") do |config|
   configvms["VMs"].each do |configvms|
     if configvms["setup"] == true
       config.vm.define configvms["name"] do |vm|
-        if configvms["box_usage"] == true
+        if configglobal["GLOBAL"]["box_usage"] == true
           vm.vm.box = configglobal["GLOBAL"]["box"]
           vm.vm.box_version = configglobal["GLOBAL"]["box_version"]
         else
@@ -28,8 +28,8 @@ Vagrant.configure("#{configglobal["GLOBAL"]["api_version"]}") do |config|
 
         # ТРИГГЕРЫ:
         vm.trigger.after :up do |trigger|
-          trigger.name = "\e[34m vagrant up after #{configvms["name"]} VM\e[0m"
-          trigger.info = "\e[34m Очищаем систему после инициализации \e[0m"
+          trigger.name = "\e[34m clean VM #{configvms["name"]} after vagrant up\e[0m"
+          trigger.info = "\e[34m  \e[0m"
           trigger.run_remote  = {path: "#{current_dir}/config/vagrant/provision/vagrant-up-after.sh"}
         end
         
@@ -52,11 +52,14 @@ Vagrant.configure("#{configglobal["GLOBAL"]["api_version"]}") do |config|
         # vm.ssh.keys_only  = configvms["keys_only"]
         # vm.ssh.insert_key = configvms["insert_key"]         
         
-        # ПРОБРОС ПОРТОВ:
-        #   следующая настройка позволит нам открыть порт прослушивания в хост- и гостевой операционных системах. 
-        #   Хост- операционная система пересылает все полученные пакеты на порт, который мы указываем для гостевой операционной системы.
-        #   Эта настройка применяется для каждой из виртуальных машин.
+        # КОНФИГУРАЦИЯ СЕТИ:
+        #   перенаправление портов:
+        #     следующая настройка позволит нам открыть порт прослушивания в хост- и гостевой операционных системах. 
+        #     Хост- операционная система пересылает все полученные пакеты на порт, который мы указываем для гостевой операционной системы.
+        #     Эта настройка применяется для каждой из виртуальных машин.
         vm.vm.network "forwarded_port", guest: configvms["port_guest"], host: configvms["port_host"]
+        #   частная сеть:
+        vm.vm.network "private_network", ip: configvms["ip"]
         
         # СИНХРОНИЗАЦИЯ ФАЙЛОВ ПРОЕКТА:
         #   хорошей практикой является не копирование файлов проекта в виртуальную машину, а совместное использование файлов между хостом и 
