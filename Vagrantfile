@@ -102,9 +102,9 @@ Vagrant.configure("#{configglobal["GLOBAL"]["api_version"]}") do |config|
               }
           end
         end
-        if configvms["name"] == "web"
+        if configvms["name"] == "dev"
           configvms["VirtualHost"].each do |virtualhost|
-            vm.vm.provision "shell", path: "#{current_dir}/config/vagrant/provision/provision-web-virtualhost-create.sh",
+            vm.vm.provision "shell", path: "#{current_dir}/config/vagrant/provision/provision-dev-virtualhost-create.sh",
               env: {
                 "ServerAdmin"   => "#{virtualhost["ServerAdmin"]}",
                 "ServerName"    => "#{virtualhost["ServerName"]}",
@@ -112,7 +112,7 @@ Vagrant.configure("#{configglobal["GLOBAL"]["api_version"]}") do |config|
                 "DocumentRoot"  => "#{virtualhost["DocumentRoot"]}",
               }
           end
-          vm.vm.provision "shell", path: "#{current_dir}/config/vagrant/provision/provision-web-virtualhost-register.sh"
+          vm.vm.provision "shell", path: "#{current_dir}/config/vagrant/provision/provision-dev-virtualhost-register.sh"
         end
         #   для конкретной вирутальной машины текущего элемента массива при каждой инициализации
         if File.file?("#{current_dir}/config/vagrant/provision/vagrant-up-#{configvms["name"]}.sh")
@@ -150,7 +150,7 @@ Vagrant.configure("#{configglobal["GLOBAL"]["api_version"]}") do |config|
           #   при каждой загрузке:
           #   ...     
         
-        elsif configvms["name"] == "web"
+        elsif configvms["name"] == "dev"
           # ТРИГГЕРЫ:
           #   ...
           # ПРОБРОС ПОРТОВ:

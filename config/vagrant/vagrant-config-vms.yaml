@@ -64,7 +64,7 @@ VMs:
     # СЕРВЕР РАЗРАБОТКИ ПРИЛОЖЕНИЙ
     #   обязательные перменные:
     setup: true
-    name: "web"
+    name: "dev"
     box: "ubuntu/focal64"
     box_version: "20220724.0.0"
     box_check_update: false
@@ -75,7 +75,7 @@ VMs:
     port_guest: 80
     port_host: 8093
     ip: 11.11.11.3
-    document_root: "www/vm-web/"
+    document_root: "www/vm-dev/"
     apache_document_root: "/var/www"
     #   дополнительные переменные:
     # vhosts_dir: "config/vhosts/"
