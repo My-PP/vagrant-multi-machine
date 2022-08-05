@@ -36,7 +36,7 @@ VMs:
     insert_key: false
     port_guest: 80
     port_host: 8091
-    ip: 11.11.11.1
+    ip: 10.255.255.1
     document_root: "www/vm-git/"
     apache_document_root: "/var/www/html"
     #   дополнительные переменные:
@@ -55,7 +55,7 @@ VMs:
     insert_key: false
     port_guest: 80
     port_host: 8092
-    ip: 11.11.11.2
+    ip: 10.255.255.2
     document_root: "www/vm-build/"
     apache_document_root: "/var/www/html"
     #   дополнительные переменные:
@@ -74,7 +74,7 @@ VMs:
     insert_key: false
     port_guest: 80
     port_host: 8093
-    ip: 11.11.11.3
+    ip: 10.255.255.3
     document_root: "www/vm-dev/"
     apache_document_root: "/var/www"
     #   дополнительные переменные:
@@ -104,7 +104,7 @@ VMs:
     insert_key: false
     port_guest: 80
     port_host: 8094
-    ip: 11.11.11.4
+    ip: 10.255.255.4
     document_root: "www/vm-mysql/"
     apache_document_root: "/var/www/html"
     #   дополнительные переменные:
@@ -143,7 +143,7 @@ VMs:
     insert_key: false
     port_guest: 80
     port_host: 8095
-    ip: 11.11.11.5
+    ip: 10.255.255.5
     document_root: "www/vm-postgresql/"
     apache_document_root: "/var/www/html"
     #   дополнительные переменные:
