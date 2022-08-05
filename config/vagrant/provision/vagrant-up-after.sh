@@ -15,10 +15,10 @@ export DEBIAN_FRONTEND=noninteractive
 echo -e "\e[34m Очищаем систему после инициализации \e[0m"
 
 echo -e "\e[34m - удаляем неиспользуемые пакеты из кэша \e[0m"
-sudo apt autoclean
+sudo apt autoclean /dev/null
   
 echo -e "\e[34m - очищаем кэш утилиты apt \e[0m"
-sudo apt clean
+sudo apt clean /dev/null
 
 echo -e "\e[34m - удаляем ненужные зависимости \e[0m"
-sudo apt autoremove
+sudo apt autoremove /dev/null
