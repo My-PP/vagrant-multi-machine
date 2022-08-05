@@ -1,6 +1,6 @@
 <?php 
 
-define( 'DB_HOST', '10.255.255.4' );
+define( 'DB_HOST', '10.23.0.204' );
 define( 'DB_NAME', 'wordpress' );
 define( 'DB_USER', 'wordpress' );
 define( 'DB_PASSWORD', 'wordpress' );
