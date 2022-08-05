@@ -59,7 +59,10 @@ Vagrant.configure("#{configglobal["GLOBAL"]["api_version"]}") do |config|
         #     Эта настройка применяется для каждой из виртуальных машин.
         vm.vm.network "forwarded_port", guest: configvms["port_guest"], host: configvms["port_host"]
         #   частная сеть:
-        vm.vm.network "private_network", ip: configvms["ip"]
+        # *********************************************************
+        # хуйня какая-то с этим параметром. надо разобраться
+        # *********************************************************
+        # vm.vm.network "private_network", ip: configvms["ip"]
         
         # СИНХРОНИЗАЦИЯ ФАЙЛОВ ПРОЕКТА:
         #   хорошей практикой является не копирование файлов проекта в виртуальную машину, а совместное использование файлов между хостом и 
