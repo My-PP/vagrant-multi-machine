@@ -60,7 +60,7 @@ Vagrant.configure("#{configglobal["GLOBAL"]["api_version"]}") do |config|
         vm.vm.network "forwarded_port", guest: configvms["port_guest"], host: configvms["port_host"]
         #   частная сеть:
         # *********************************************************
-        # хуйня какая-то с этим параметром. надо разобраться
+        # бубня какая-то с этим параметром. надо разобраться
         # *********************************************************
         # vm.vm.network "private_network", ip: configvms["ip"]
         
