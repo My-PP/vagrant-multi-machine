@@ -8,7 +8,7 @@ $databases['default']['default'] = [
     'database' => 'drupal',
     'username' => 'drupal',
     'password' => 'drupal',
-    'host' => '10.255.0.4',
+    'host' => '10.255.0.14',
     'prefix' => 'dru_',
     'port' => '3306',
 ];

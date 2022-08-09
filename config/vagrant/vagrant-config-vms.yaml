@@ -12,7 +12,9 @@
 #   insert_key: false     - отменить создание ssh-ключа
 #   port_guest            -
 #   port_host             -
-#   ip                    -
+#   ip_private            -
+#   ip_public             -
+#   ip_bridge             -
 #   document_root         -
 #   apache_document_root  - 
 # ДОПОЛНИТЕЛЬНЫЕ ПЕРЕМЕННЫЕ:
@@ -36,7 +38,7 @@ VMs:
     insert_key: false
     port_guest: 80
     port_host: 8091
-    ip: 10.255.0.1
+    ip_private: 10.255.0.11
     document_root: "www/vm-git/"
     apache_document_root: "/var/www/html"
     #   дополнительные переменные:
@@ -55,7 +57,7 @@ VMs:
     insert_key: false
     port_guest: 80
     port_host: 8092
-    ip: 10.255.0.2
+    ip_private: 10.255.0.12
     document_root: "www/vm-build/"
     apache_document_root: "/var/www/html"
     #   дополнительные переменные:
@@ -74,7 +76,7 @@ VMs:
     insert_key: false
     port_guest: 80
     port_host: 8093
-    ip: 10.255.0.3
+    ip_private: 10.255.0.13
     document_root: "www/vm-dev/"
     apache_document_root: "/var/www"
     #   дополнительные переменные:
@@ -104,7 +106,7 @@ VMs:
     insert_key: false
     port_guest: 80
     port_host: 8094
-    ip: 10.255.0.4
+    ip_private: 10.255.0.14
     document_root: "www/vm-mysql/"
     apache_document_root: "/var/www/html"
     #   дополнительные переменные:
@@ -143,7 +145,7 @@ VMs:
     insert_key: false
     port_guest: 80
     port_host: 8095
-    ip: 10.255.0.5
+    ip_private: 10.255.0.15
     document_root: "www/vm-postgresql/"
     apache_document_root: "/var/www/html"
     #   дополнительные переменные:
