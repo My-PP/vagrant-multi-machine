@@ -54,6 +54,7 @@ Vagrant.configure("#{configglobal["GLOBAL"]["api_version"]}") do |config|
         elsif configglobal["GLOBAL"]["vagrant_provider"] == "vmware_fusion"
         elsif configglobal["GLOBAL"]["vagrant_provider"] == "docker"
         elsif configglobal["GLOBAL"]["vagrant_provider"] == "hyperv"
+        elsif configglobal["GLOBAL"]["vagrant_provider"] == "parallels"
         end
         
         # НАСТРОЙКА SSH:
