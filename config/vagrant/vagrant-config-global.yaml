@@ -3,16 +3,20 @@
 # ГЛОБАЛЬНЫЕ ПЕРЕМЕННЫЕ:
 GLOBAL:
   api_version: "2"
+  
   # Домен который будем использовать для кластера
   domain: ".che.local"
+  
   # PHP:
   #   Доступные, протестированные переменные:
   #   5.4, 5.6, 7.1, 7.2, 7.3, 7.4, 8.0
   php_version: 7.4      
+  
   # MySQL:
   #   Доступные, протестированные переменные:
   #   mysql57, mysql8, mariadb103, mariadb104, mariadb105, mariadb106
   mysql_version: mysql8  
+  
   # VAGRANT PROVIDER:
   #   Доступные, протестированные переменные:
   #     Docker              - docker
@@ -21,6 +25,7 @@ GLOBAL:
   #     VMWare Fusion       - vmware_fusion
   #     VMWare Workstation  - vmware_workstation        
   vagrant_provider: virtualbox
+  
   # ЕДИНЫЙ ОБРАЗ СИСИТЕМЫ ДЛЯ ВСЕХ ВИРТУАЛЬНЫХ МАШИН: 
   #   Доступные, протестированные переменные:
   #     ubuntu/focal64 (20220724.0.0)
@@ -38,12 +43,4 @@ GLOBAL:
     -  "file://../../vagrant-boxes/xxxxx.box"
     -  "http://x.x.x.x//vagrant-boxes/xxxxx.box"
   
-
-HOSTs:
-  -
-    host: "wordpress.local"
-    email: "admin@wordpress.local"
-  -
-    host: "drupal.local"
-    email: "admin@drupal.local"
 ...
