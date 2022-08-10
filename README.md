@@ -11,28 +11,28 @@
   - система контроля версий Git;
   - система виртуализации:
     - Virtualbox;
-    - или Hyper-V.
+    - ~~или Hyper-V~~.
   - Vagrant.
 
 ## Если не установлен Git ##
 
-- [Установка в Windows]()
-- [Первоначальная настройка Git]()
+- [Установка в Windows](https://github.com/My-PP/Today-I-Learned/blob/main/Git/README.md)
+- [Первоначальная настройка Git](https://github.com/My-PP/Today-I-Learned/blob/main/Git/README.md)
 - ...
 - [Эти и другие знания про Git](https://github.com/My-PP/Today-I-Learned/blob/main/Git/README.md)
 
 ## Если не установлен Virtualbox ##
 
-- [Установка в Windows]()
+- [Установка в Windows](https://github.com/My-PP/Today-I-Learned/blob/main/Virtualbox/README.md)
 - ...
 - [Эти и другие знания про Virtualbox](https://github.com/My-PP/Today-I-Learned/blob/main/Virtualbox/README.md)
 
 ## Если не установлен Microsoft Hyper-V ##
 
-- [Проверьте следующие требования](https://github.com/My-PP/Today-I-Learned/blob/main/Hyper-V/README.md#1)
-- [Включение аппаратной виртуализации](https://github.com/My-PP/Today-I-Learned/blob/main/Hyper-V/README.md#2)
+- ну и правильно, на данном этапе;
+- он всё равно не работает одновременно с Virtualbox;
 - ...
-- [Эти и другие знания про Microsoft Hyper-V](https://github.com/My-PP/Today-I-Learned/blob/main/Hyper-V/README.md#hyper-vd)
+- [Но здесь можно подчерпнуть знания про Microsoft Hyper-V](https://github.com/My-PP/Today-I-Learned/blob/main/Hyper-V/README.md#hyper-vd)
 
 ## Если не установлен Vagrant ##
 
@@ -46,34 +46,33 @@
 
 - запускаем утилиту `Git Bash`
 
-- переходим в локальную папку, где планируется развернуть приложение Vagrant Multi-Machine:<br>
-`cd %PATH%` например в папку C:\projects
+- переходим в локальную папку, где планируется развернуть приложение Vagrant Multi-Machine, в `Git Bash` выполняем команду `cd %PATH%` например, если папка C:\projects, то:
 
 ```bash
 cd /c/projects/
 ```
 
-- выполняем команду:
+- выполняем команду в `Git Bash`:
 
 ```bash
 git clone git@github.com:My-PP/vagrant-multi-machine.git
 ```
 
-- переходим во вновь созданную папку:
+- переходим во вновь созданную папку, выполняем команду в `Git Bash`:
 
 ```bash
 cd vagrant-multi-machine
 ```
 
-- подключаем требуемые виртуальные машины в конфигурационном файле config/vagrant/vagrant-config-vms.yaml
+- подключаем необходимые виртуальные машины в конфигурационном файле `config/vagrant/vagrant-config-vms.yaml`
 
-- настраиваем глобальные переменные в конфигурационном файле config/vagrant/vagrant-config-global.yaml
+- настраиваем глобальные переменные в конфигурационном файле `config/vagrant/vagrant-config-global.yaml`
 
-- выполняем команду `vagrant up` - эта команда смотрит в Vagrantfile и создаёт виртуальную машину согласно описания.
+- в `Git Bash` выполняем команду `vagrant up` - эта команда смотрит в Vagrantfile, читает конфигурационные файлы<br>`/config/vagrant/vagrant-config-vms.yaml`<br>и<br>`/config/vagrant/vagrant-config-global.yaml`<br>проходит по элементам массива и создаёт виртуальные машины в цикле согласно описания.
 
 ## Конфигурационный файл config/vagrant/vagrant-config-vms.yaml ##
 
-Доступные виртуальные машины:
+### Доступные виртуальные машины ###
 
 - ~~система контроля версий GitLab Community Edition~~;
 - ~~сервер непрерывной интеграции (билд-сервер)~~;
@@ -81,11 +80,24 @@ cd vagrant-multi-machine
 - MySQL сервер баз данных с установленным phpMyAdmin;
 - ~~PostgreSQL сервер баз данных~~;
 - ~~почтовый сервер~~;
-- [дорожная карта приложений, ToDo](TODO.md).
+- [дорожная карта разработки, ToDo](TODO.md).
 
 Для каждой виртуальной машины предопределён список обязательных и дополнительных переменных. Описание в соответствующем YAML-файле с настройками.
 
-Чтобы виртуальная машина создалсь, необходимо параметр `setup` предопределить как `true`. Доступные переменные для этого параметра: `true`, `false`.
+Чтобы виртуальная машина создалсь и запустилась, необходимо параметр `setup` предопределить как `true`. Доступные переменные для этого параметра: `true`, `false`.
+
+Чтобы добавить ещё одну виртуальную машину, просто добавьте её в массив VMs конфигурационного файла `/config/vagrant/vagrant-config-vms.yaml`
+
+### Доступные виртуальные хосты ###
+
+- localhost:8093
+- drupal.local:8093
+- wordpress.local:8093
+- localhost:8094
+
+Для каждой из виртуальных машин существует дополнительный, необязательный параметр: `VirtualHost` 
+
+Vagrant, при наличии параметра в конфигурационном файле `/config/vagrant/vagrant-config-vms.yaml`, в цикле прочитает данные, автоматически добавит виртуальный хост, зарегистрирует и добавит запись в `/etc/hosts`
 
 ## Конфигурационный файл config/vagrant/vagrant-config-global.yaml ##
 
@@ -97,6 +109,9 @@ cd vagrant-multi-machine
 - 127.0.0.1 drupal.local
 
 После этого в браузере будут доступны приложения по ссылкам:
-- [localhost:8094/phpmyadmin](http://localhost:8094/phpmyadmin)
-- [wordpress.local:8093](http://wordpress.local:8093)
-- [drupal.local:8093](http://drupal.local:8093)
+
+- сервер разработки приложений
+  - [wordpress.local:8093](http://wordpress.local:8093)
+  - [drupal.local:8093](http://drupal.local:8093)
+- MySQL сервер баз данных
+  - [localhost:8094/phpmyadmin](http://localhost:8094/phpmyadmin)
