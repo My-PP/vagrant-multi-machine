@@ -46,6 +46,7 @@ Vagrant.configure("#{configglobal["GLOBAL"]["api_version"]}") do |config|
           vm.vm.provider :virtualbox do |vb|
             vb.customize [
               "modifyvm", :id,
+              "--cableconnected1", "on",
               "--memory", memory.to_s,
               "--cpus", cpu.to_s,
               "--name", name
@@ -65,6 +66,7 @@ Vagrant.configure("#{configglobal["GLOBAL"]["api_version"]}") do |config|
         #   Этот ключ расположен в где-то в недрах директрории .vagrant (создается после первого запуска vagrant up). Посмотреть, какой ключ 
         #   будет использован, можно с помощью команды: vagrant ssh-config
         #   Можно отменить создание ssh-ключа, если определить переменную в YAML-файле с настройками insert_key = false
+        vm.vm.boot_timeout = 300
         # vm.ssh.username   = configvms["username"]
         # vm.ssh.password   = configvms["password"]
         # vm.ssh.keys_only  = configvms["keys_only"]
@@ -197,6 +199,32 @@ Vagrant.configure("#{configglobal["GLOBAL"]["api_version"]}") do |config|
           #   ...      
                 
         elsif configvms["name"] == "build"
+          # ТРИГГЕРЫ:
+          #   ...
+          # ПРОБРОС ПОРТОВ:
+          #   ...
+          # СИНХРОНИЗАЦИЯ ФАЙЛОВ ПРОЕКТА:
+          #   ...
+          # ДОПОЛНИТЕЛЬНАЯ КОНФИГУРАЦИЯ ВИРТУАЛЬНОЙ МАШИНЫ С ПОМОЩЬЮ SHELL
+          # при первой загрузке
+          #   ...
+          #   при каждой загрузке:
+          #   ...     
+        
+        elsif configvms["name"] == "mail"
+          # ТРИГГЕРЫ:
+          #   ...
+          # ПРОБРОС ПОРТОВ:
+          #   ...
+          # СИНХРОНИЗАЦИЯ ФАЙЛОВ ПРОЕКТА:
+          #   ...
+          # ДОПОЛНИТЕЛЬНАЯ КОНФИГУРАЦИЯ ВИРТУАЛЬНОЙ МАШИНЫ С ПОМОЩЬЮ SHELL
+          # при первой загрузке
+          #   ...
+          #   при каждой загрузке:
+          #   ...     
+        
+        elsif configvms["name"] == "zabbix"
           # ТРИГГЕРЫ:
           #   ...
           # ПРОБРОС ПОРТОВ:
