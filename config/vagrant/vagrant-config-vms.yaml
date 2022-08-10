@@ -150,7 +150,7 @@ VMs:
     apache_document_root: "/var/www/html"
     #   дополнительные переменные:
     memory: 2048
-   -
+  -
     # ПОЧТОВЫЙ СЕРВЕР
     #   обязательные перменные:
     setup: false  
