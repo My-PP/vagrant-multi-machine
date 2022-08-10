@@ -24,6 +24,7 @@
 ## Если не установлен Virtualbox ##
 
 - [Установка в Windows](https://github.com/My-PP/Today-I-Learned/blob/main/Virtualbox/README.md)
+- [Переходим с Microsoft Hyper-V и переносим виртуальные машины на сервер Oracle VirtualBox](https://github.com/My-PP/Today-I-Learned/blob/main/Virtualbox/README.md#999)
 - ...
 - [Эти и другие знания про Virtualbox](https://github.com/My-PP/Today-I-Learned/blob/main/Virtualbox/README.md)
 
