@@ -25,29 +25,10 @@
 
 VMs:
   -
-    # ZABBIX СИСТЕМА МОНИТОРИНГА
+    # СЕРВЕР МОНИТОРИНГА IT-ИНФРАСТРУКТУРЫ, АУДИТА И АВТОРИЗАЦИИ
     #   обязательные переменные:
     setup: false
-    name: "zabbix"
-    box: "ubuntu/focal64"
-    box_version: "20220724.0.0"
-    box_check_update: false
-    username: Administrator
-    password: p@ssw0rd
-    keys_only: false
-    insert_key: false
-    port_guest: 80
-    port_host: 8097
-    ip_private: 10.255.0.17
-    document_root: "www/vm-zabbix/"
-    apache_document_root: "/var/www/html"
-    #   дополнительные переменные:
-    #   ...
-  -
-    # СИСТЕМА КОНТРОЛЯ ВЕРСИЙ GITLAB COMMUNITY EDITION
-    #   обязательные переменные:
-    setup: false
-    name: "git"
+    name: "ns"
     box: "ubuntu/focal64"
     box_version: "20220724.0.0"
     box_check_update: false
@@ -57,16 +38,16 @@ VMs:
     insert_key: false
     port_guest: 80
     port_host: 8091
-    ip_private: 10.255.0.11
-    document_root: "www/vm-git/"
+    ip_private: 10.255.0.101
+    document_root: "www/vm-ns/"
     apache_document_root: "/var/www/html"
     #   дополнительные переменные:
     #   ...
   -
-    # СЕРВЕР НЕПРЕРЫВНОЙ ИНТЕГРАЦИИ (билд-сервер)
+    # ПОЧТОВЫЙ СЕРВЕР
     #   обязательные переменные:
-    setup: false
-    name: "build"
+    setup: false  
+    name: "mail"
     box: "ubuntu/focal64"
     box_version: "20220724.0.0"
     box_check_update: false
@@ -76,41 +57,11 @@ VMs:
     insert_key: false
     port_guest: 80
     port_host: 8092
-    ip_private: 10.255.0.12
-    document_root: "www/vm-build/"
+    ip_private: 10.255.0.102
+    document_root: "www/vm-mail/"
     apache_document_root: "/var/www/html"
     #   дополнительные переменные:
-    #   ...
-  -
-    # СЕРВЕР РАЗРАБОТКИ ПРИЛОЖЕНИЙ
-    #   обязательные переменные:
-    setup: false
-    name: "dev"
-    box: "ubuntu/focal64"
-    box_version: "20220724.0.0"
-    box_check_update: false
-    username: Administrator
-    password: p@ssw0rd
-    keys_only: false
-    insert_key: false
-    port_guest: 80
-    port_host: 8093
-    ip_private: 10.255.0.13
-    document_root: "www/vm-dev/"
-    apache_document_root: "/var/www"
-    #   дополнительные переменные:
-    # vhosts_dir: "config/vhosts/"
-    VirtualHost:
-      -
-        ServerAdmin: "webmaster@localhost"
-        ServerName: "drupal.local"
-        ServerAlias: "www.drupal.local"
-        DocumentRoot: "/var/www/drupal.local"
-      -
-        ServerAdmin: "webmaster@localhost"
-        ServerName: "wordpress.local"
-        ServerAlias: "www.wordpress.local"
-        DocumentRoot: "/var/www/wordpress.local"
+    memory: 2048
   -
     # MySQL СЕРВЕР БАЗ ДАННЫХ
     #   обязательные переменные:
@@ -124,8 +75,8 @@ VMs:
     keys_only: false
     insert_key: false
     port_guest: 80
-    port_host: 8094
-    ip_private: 10.255.0.14
+    port_host: 8093
+    ip_private: 10.255.0.103
     document_root: "www/vm-mysql/"
     apache_document_root: "/var/www/html"
     #   дополнительные переменные:
@@ -163,17 +114,36 @@ VMs:
     keys_only: false
     insert_key: false
     port_guest: 80
-    port_host: 8095
-    ip_private: 10.255.0.15
+    port_host: 8094
+    ip_private: 10.255.0.104
     document_root: "www/vm-postgresql/"
     apache_document_root: "/var/www/html"
     #   дополнительные переменные:
     memory: 2048
   -
-    # ПОЧТОВЫЙ СЕРВЕР
+    # PRODUCTION-ОКРУЖЕНИЕ
     #   обязательные переменные:
-    setup: false  
-    name: "mail"
+    setup: false
+    name: "production"
+    box: "ubuntu/focal64"
+    box_version: "20220724.0.0"
+    box_check_update: false
+    username: Administrator
+    password: p@ssw0rd
+    keys_only: false
+    insert_key: false
+    port_guest: 80
+    port_host: 8095
+    ip_private: 10.255.0.105
+    document_root: "www/vm-production/"
+    apache_document_root: "/var/www/html"
+    #   дополнительные переменные:
+    #   ...
+  -
+    # СИСТЕМА КОНТРОЛЯ ВЕРСИЙ GITLAB COMMUNITY EDITION
+    #   обязательные переменные:
+    setup: false
+    name: "git"
     box: "ubuntu/focal64"
     box_version: "20220724.0.0"
     box_check_update: false
@@ -183,9 +153,58 @@ VMs:
     insert_key: false
     port_guest: 80
     port_host: 8096
-    ip_private: 10.255.0.16
-    document_root: "www/vm-mail/"
+    ip_private: 10.255.0.106
+    document_root: "www/vm-git/"
     apache_document_root: "/var/www/html"
     #   дополнительные переменные:
-    memory: 2048
+    #   ...
+  -
+    # СЕРВЕР НЕПРЕРЫВНОЙ ИНТЕГРАЦИИ (билд-сервер)
+    #   обязательные переменные:
+    setup: false
+    name: "build"
+    box: "ubuntu/focal64"
+    box_version: "20220724.0.0"
+    box_check_update: false
+    username: Administrator
+    password: p@ssw0rd
+    keys_only: false
+    insert_key: false
+    port_guest: 80
+    port_host: 8097
+    ip_private: 10.255.0.107
+    document_root: "www/vm-build/"
+    apache_document_root: "/var/www/html"
+    #   дополнительные переменные:
+    #   ...
+  -
+    # СЕРВЕР РАЗРАБОТКИ ПРИЛОЖЕНИЙ
+    #   обязательные переменные:
+    setup: false
+    name: "dev"
+    box: "ubuntu/focal64"
+    box_version: "20220724.0.0"
+    box_check_update: false
+    username: Administrator
+    password: p@ssw0rd
+    keys_only: false
+    insert_key: false
+    port_guest: 80
+    port_host: 8098
+    ip_private: 10.255.0.108
+    document_root: "www/vm-dev/"
+    apache_document_root: "/var/www"
+    #   дополнительные переменные:
+    # vhosts_dir: "config/vhosts/"
+    VirtualHost:
+      -
+        ServerAdmin: "webmaster@localhost"
+        ServerName: "drupal.local"
+        ServerAlias: "www.drupal.local"
+        DocumentRoot: "/var/www/drupal.local"
+      -
+        ServerAdmin: "webmaster@localhost"
+        ServerName: "wordpress.local"
+        ServerAlias: "www.wordpress.local"
+        DocumentRoot: "/var/www/wordpress.local"
 ...
